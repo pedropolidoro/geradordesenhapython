@@ -1,61 +1,25 @@
-from emoji import emojize
-from sys import exit
-from random import randint
-from emoji.core import emojize
-print(' ')
-print('Digite o numero do seu aventureiro para escolhe-lo')
-print(' ')
-print('--------------------------')
-print(emojize("1-Cara alegre        :smiley:", use_aliases=True))
-print('--------------------------')
-print(emojize("2-Cara triste        :cry:", use_aliases=True))
-print('--------------------------')
-print(emojize("3-Cara apaixonado    :heart_eyes:", use_aliases=True))
-print('--------------------------')
-print(emojize("4-Cara zangado       :rage:", use_aliases=True))
-print('--------------------------')
-print(emojize("5-Cara desconfiado   :expressionless:", use_aliases=True))
-print('--------------------------')
+from random import choice
+from string import hexdigits, punctuation
+from time import sleep, time
 
-plesc = input('--->')
+print('\nGerador de senhas\n')
 
-if plesc == '1':
-    playerchar = (emojize(':smiley:', use_aliases=True))
+numeroDeLetras = int(input("Qual a quantidade de caracteres?\n\033[1;34m--->\033[0;0m "))
+numeroDeCaracteresEspeciais = int(input("\nQual a quantidade de caracteres especiais?\n\033[1;34m--->\033[0;0m "))
+letras = hexdigits
+caracteresEspeciais = punctuation
+caracteresGerador = ''.join(choice(letras) for _ in range(numeroDeLetras))
+caracteresEspeciaisGerador = ''.join(choice(caracteresEspeciais) for _ in range(numeroDeCaracteresEspeciais))
+fpin = caracteresGerador + caracteresEspeciaisGerador
 
-if plesc == '2':
-    playerchar = (emojize(':cry:', use_aliases=True))
+print('\nGerando sua senha, aguarde\n')
 
-if plesc == '3':
-    playerchar = (emojize(':heart_eyes:', use_aliases=True))
+sleep(0.45)
+print('\033[1;34m|\033[0;0m3\033[1;34m|\033[0;0m')
+sleep(0.75)
+print('\033[1;34m|\033[0;0m2\033[1;34m|\033[0;0m')
+sleep(0.75)
+print('\033[1;34m|\033[0;0m1\033[1;34m|\033[0;0m')
+sleep(0.75)
 
-if plesc == '4':
-    playerchar = (emojize(':rage:', use_aliases=True))
-
-if plesc == '5':
-    playerchar = (emojize('expressionless:', use_aliases=True))
-
-#MENSAGEM DE BOAS VINDAS
-
-print('')
-print('Olá {}, como deseja ser chamado?'.format(playerchar))
-pname = input('---> ')
-print('')
-print('Olá {}, seja bem vindo ao jogo da advinhacão'.format(pname))
-print('Nesse jogo, eu darei um numero, e voçê tera que acerta-lo, se acertar vc ganha oa game')
-print('')
-print('Deseja começar? (s/n)')
-startq = input('---> ')
-if startq == 'n':
-    print('{}, tem certeza que quer abandonar o jogo? (s/n)'.format(pname))
-    qtgameq = input('--->')
-    if qtgameq == 's':
-        exit()
-if startq == 's':
-    print('')
-    print('Então vamos começar! Digite um numero entre 0 e 5')
-    print('')
-    cdnm = int(input('Digite seu numero aqui ---> '))
-if cdnm > 3:
-    print('Parabens {}, você ganhou o jogo, sua recompensa esté em: encurtador.com.br/kmvyS '.format(pname))
-if cdnm < 4:
-    print('Infelizmente não ganhastes o jogo, tente novamente')
+print('\nA senha gerada aleatoriamente é: \033[1;31m|\033[0;0m    \033[;1m{}\033[0;0m      \033[1;31m|\033[0;0m Contendo {} caracteres no total.\n'.format(fpin, int(numeroDeCaracteresEspeciais)+int(numeroDeLetras)))
